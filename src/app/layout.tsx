@@ -19,6 +19,14 @@ const header = (
   </header>
 );
 
+const footer = (
+  <footer>
+    <div>
+      <br />
+      <h3>Developed by mezzat amine</h3>
+    </div>
+  </footer>
+);
 export default function RootLayout({
   children,
 }: {
@@ -27,7 +35,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head></head>
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        {header}
+        {children}
+        {footer}
+      </body>
     </html>
   )
 }
