@@ -1,7 +1,22 @@
-export default function PostApp(){
+import fs from "fs";
+
+
+
+const getPostContent = (posts: string) => {
+    const folder = "blogposts/";
+    const file = `${folder}${posts}.md`;
+    const content = fs.readFileSync(file, "utf8");
+    return content;
+};
+
+export default function PostApp(props: any){
+    const posts = props.params.posts;
+    const content = getPostContent(posts);
+    
     return(
         <main>
-            
+            <h1>This is a post: {posts}</h1>
+            <p></p>
         </main>
 
     )
