@@ -27,6 +27,7 @@ const footer = (
     </div>
   </footer>
 );
+
 export default function RootLayout({
   children,
 }: {
@@ -34,7 +35,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head></head>
+      <head />
       <body className={inter.className}>
         {header}
         {children}
