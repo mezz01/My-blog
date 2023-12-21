@@ -1,22 +1,24 @@
 import fs from "fs";
-
-
+import Markdown from "markdown-to-jsx"
+import matter from "gray-matter"
 
 const getPostContent = (posts: string) => {
     const folder = "blogposts/";
     const file = `${folder}${posts}.md`;
     const content = fs.readFileSync(file, "utf8");
-    return content;
+    const matterResults = matter(content);
+    return matterResults;
 };
 
 export default function PostApp(props: any){
     const posts = props.params.posts;
-    const content = getPostContent(posts);
-    
+    const post = getPostContent(posts);
     return(
         <main>
-            <h1>This is a post: {posts}</h1>
-            <p></p>
+            <h1>This is a post: {post.data.title}</h1>
+            <br />
+            <br />
+            <Markdown>{post.content}</Markdown>
         </main>
 
     )
@@ -45,4 +47,11 @@ export default function PostApp(props: any){
  * 
  * So to end up things this can be a minimal intro to nextjs routing, there is much more
  * to that that I ll try to explain as I go on my projects.
+ * 
+ * 
+ * Dealing qwith markdown files :
+ * to show markdown content you need to install marldown-to-jsx coneverter 
+ * with npm ( npm i markdown-to-jsx )
+ * and use the <Markdown></Markdown> tag to wrap the content of the 
+ * markdown file 
  */
